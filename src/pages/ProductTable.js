@@ -27,8 +27,9 @@ const Button = styled.button`
 `;
 
 
-const ProductTable = () => {
-  const [products, setProducts] = useState([]);
+const ProductTable = ({products, setProducts}) => {
+  // Remova este trecho inteiro:
+  // const [products, setProducts] = useState([]);
   const [proNome, setProNome] = useState("");
   const [proTipo, setProTipo] = useState("");
   const [filter, setFilter] = useState("Tudo");
@@ -43,12 +44,15 @@ const ProductTable = () => {
     { value: "Salada", label: "Salada" },
   ];
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8800/produtos")
-      .then((response) => setProducts(response.data))
-      .catch(() => toast.error("Erro ao buscar produtos."));
-  }, []);
+
+ // Remova este trecho inteiro:
+  
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8800/produtos")
+  //     .then((response) => setProducts(response.data))
+  //     .catch(() => toast.error("Erro ao buscar produtos."));
+  // }, []);
 
   const handleSave = () => {
     if (!proNome || !proTipo) {

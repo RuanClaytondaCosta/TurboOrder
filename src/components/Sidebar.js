@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink  } from "react-router-dom";
 import { FaHome, FaUtensils, FaUsers, FaHistory, FaSignOutAlt } from "react-icons/fa";
+import { IoIosStats } from "react-icons/io";
+
 import { BiFoodMenu } from "react-icons/bi";
 import "./../styles/Sidebar.css";
 import logo from "../image/logo.png";
@@ -38,6 +40,18 @@ const Sidebar = () => {
               <FaHistory /> <p className="NavLinkText">Histórico de Pedidos</p>
             </NavLink >
           </li>
+
+         { /*aqui sera o link para colocar os gráficos */} 
+          <li>
+
+           <NavLink  to="/desempenho">
+              <IoIosStats   /> <p className="NavLinkText">Desempenho</p>
+            </NavLink >
+
+         </li>
+
+
+
           <li>
 
             {/* TODO modificar isso pra um link/button  */}

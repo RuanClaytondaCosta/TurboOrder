@@ -3,6 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+
 
 import Sidebar from "./components/Sidebar.js";
 import Header from "./components/Header.js";
@@ -14,9 +19,21 @@ import Calendar from "./pages/Calendar.js";
 import AddOrder from "./pages/AddOrder.js";
 import ClientTable from "./pages/ClientTable.js";
 import EditClient from "./pages/EditClient.js";
+/* importar o import desempenho do gráfico aqui */
+import Desempenho from "./pages/Desempenho"; // Importar a página de desempenho
+
+
+
 
 function App() {
   const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+    axios
+      .get("http://localhost:8800/produtos")
+      .then((response) => setProducts(response.data))
+      .catch(() => toast.error("Erro ao buscar produtos."));
+  }, []);
 
   return (
     <Router>
@@ -35,6 +52,8 @@ function App() {
               <Route path="/cadastro-de-cliente/pedidos" element={<AddOrder />} />
               <Route path="/clientes" element={<ClientTable />} />
               <Route path="/clientes/:id/edit" element={<EditClient />} />
+              <Route path="/desempenho" element={<Desempenho   products={products}/>} />
+
             </Routes>
           </div>
         </main>
